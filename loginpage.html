@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #3498db, #8e44ad);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #555;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        .switch {
+            text-align: center;
+            margin-top: 20px;
+            color: #333; /* Dark color for switch text */
+        }
+
+        .switch a {
+            color: #3498db; /* Blue color for links */
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        .switch a:hover {
+            color: #2980b9; /* Darker blue on hover */
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="loginForm">
+        <h2>Login</h2>
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="submit">Login</button>
+
+        <div class="switch">
+            <p>Don't have an account? <a href="#" onclick="toggleForm()">Sign up</a></p>
+        </div>
+    </form>
+
+    <form id="signupForm" style="display:none;">
+        <h2>Sign Up</h2>
+        <label for="signupUsername">Username:</label>
+        <input type="text" id="signupUsername" name="signupUsername" required>
+
+        <label for="signupEmail">Email:</label>
+        <input type="email" id="signupEmail" name="signupEmail" required>
+
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" name="signupPassword" required>
+
+        <div id="signupError" class="error-message"></div>
+
+        <button type="submit">Sign Up</button>
+
+        <div class="switch">
+            <p>Already have an account? <a href="#" onclick="toggleForm()">Login</a></p>
+        </div>
+    </form>
+
+    <script>
+        function toggleForm() {
+            var loginForm = document.getElementById('loginForm');
+            var signupForm = document.getElementById('signupForm');
+
+            loginForm.style.display = (loginForm.style.display === 'none') ? 'block' : 'none';
+            signupForm.style.display = (signupForm.style.display === 'none') ? 'block' : 'none';
+
+            document.getElementById('signupError').innerText = '';
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            var password = document.getElementById('signupPassword').value;
+            if (password.length < 8) {
+                event.preventDefault();
+                document.getElementById('signupError').innerText = 'Password must be at least 8 characters long.';
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+        
